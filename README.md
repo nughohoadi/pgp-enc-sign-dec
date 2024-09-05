@@ -1,1 +1,1 @@
-Simple PHP script for encyrpt, sing and decrypt with PGP
+Simple PHP script for encyrpt, sign and decrypt with PGP
