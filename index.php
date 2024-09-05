@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         unlink($tempPublicKeyFile);
         unlink($tempPrivateKeySignFile);
     } elseif (isset($_POST['decrypt']) && isset($_FILES['encryptedFile']) && isset($_FILES['privateKey'])) {
-        // Decryption process remains the same as before
+        // Decryption process
         $encryptedFilePath = $_FILES['encryptedFile']['tmp_name'];
         $privateKeyPath = $_FILES['privateKey']['tmp_name'];
         $passphrase = isset($_POST['passphrase']) ? $_POST['passphrase'] : '';
