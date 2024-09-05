@@ -1,14 +1,23 @@
 <?php
 if (isset($_GET['file'])) {
-    $file = sys_get_temp_dir() . '/' . basename($_GET['file']);
-    if (file_exists($file)) {
+    $file = basename($_GET['file']);
+    $filePath = sys_get_temp_dir() . '/' . $file;
+
+    if (file_exists($filePath)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($file));
-        header('Content-Length: ' . filesize($file));
-        readfile($file);
-        unlink($file);
+        header('Content-Disposition: attachment; filename="' . $file . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filePath));
+
+        readfile($filePath);
+        unlink($filePath); // Remove file after download
         exit;
+    } else {
+        echo "<p class='alert alert-danger'>File not found.</p>";
     }
+} else {
+    echo "<p class='alert alert-danger'>No file specified.</p>";
 }
-?>
